@@ -1,22 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
+import Login from '../views/Login/Login.vue'
+import UserRegistration from '../views/UserRegistration/UserRegistration.vue'
+import Dashboard from '../views/Dashboard/Dashboard.vue'
+import ExerciseManagement from '../views/ExerciseManagement/ExerciseManagement.vue'
+import StudentManagement from '../views/StudentManagement/StudentManagement.vue'
+import NewStudentRegister from '../views/NewStudentRegister/NewStudentRegister.vue'
+import TrainingRegistration from '../views/TrainingRegistration/TrainingRegistration.vue'
+import TrainingVisualization from '../views/TrainingVisualization/TrainingVisualization.vue'
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'Login',
+      component: Login
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
+      path: '/Cadastro/usuario',
+      name: 'UserRegistration',
+      component: UserRegistration
+    },
+    {
+      path: '/Dashboard',
+      name: 'Dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/Gerenciamento/Exercicios',
+      name: 'ExerciseManagement',
+      component: ExerciseManagement
+    },
+    {
+      path: '/Gerenciamento/Aluno',
+      name: 'StudentManagement',
+      component: StudentManagement
+    },
+    {
+      path: '/Cadastro/Novo/Aluno',
+      name: 'NewStudentRegister',
+      component: NewStudentRegister
+    },
+    {
+      path: '/Cadastro/Treino',
+      name: 'TrainingRegistration',
+      component: TrainingRegistration
+    },
+    {
+      path: '/Visualização/Treinos',
+      name: 'TrainingVisualization',
+      component: TrainingVisualization
+    },
+    
   ]
 })
 
