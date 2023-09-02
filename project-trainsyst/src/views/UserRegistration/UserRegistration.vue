@@ -41,7 +41,10 @@
 </template>
 
 <script>
-export default{
+import * as yup from 'yup'
+
+export default{ 
+ 
     data() {
         return {
             name: "",
