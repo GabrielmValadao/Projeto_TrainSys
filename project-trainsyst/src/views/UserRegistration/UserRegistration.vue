@@ -42,7 +42,7 @@
 
 <script>
 import * as yup from 'yup'
-
+import axios from 'axios'
 export default{ 
  
     data() {
