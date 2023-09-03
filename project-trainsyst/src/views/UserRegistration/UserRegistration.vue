@@ -63,9 +63,9 @@ export default {
       password: "",
       verify_password: "",
       type_plan: [
-        { text: "Bronze", value: "bronze" },
-        { text: "Prata", value: "silver" },
-        { text: "Ouro", value: "gold" },
+        { title: "Bronze", value: "bronze" },
+        { title: "Prata", value: "silver" },
+        { title: "Ouro", value: "gold" },
       ],
       select_plan: "bronze",
 
@@ -109,12 +109,12 @@ export default {
           password: this.password,
           type_plan: this.select_plan,
         };
-
+        
         //cadastro do usuario
-
+        
         axios
-          .post(`http://localhost:3000/users`, novoUsuario)
-          .then(() => {
+        .post(`http://localhost:3000/users`, novoUsuario)
+        .then(() => {
             alert("Usuário cadastrado com sucesso!");
             this.$router.push("/");
           })
