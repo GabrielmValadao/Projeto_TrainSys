@@ -62,12 +62,12 @@ export default {
       email: "",
       password: "",
       verify_password: "",
+      select_plan: "bronze",
       type_plan: [
         { title: "Bronze", value: "bronze" },
         { title: "Prata", value: "silver" },
         { title: "Ouro", value: "gold" },
       ],
-      select_plan: "bronze",
 
       errors: {},
     };
@@ -90,7 +90,7 @@ export default {
             .string()
             .required("Informe novamente sua senha")
             .oneOf([yup.ref("password")], "As senhas devem ser iguais"),
-          plan_type: yup.array().required("Selecione um dos planos"),
+          select_plan: yup.string().required("Selecione um dos planos"),
         });
 
         schema.validateSync(
@@ -99,6 +99,7 @@ export default {
             email: this.email,
             password: this.password,
             verify_password: this.verify_password,
+            select_plan: this.select_plan 
           },
           { abortEarly: false }
         );
@@ -109,12 +110,12 @@ export default {
           password: this.password,
           type_plan: this.select_plan,
         };
-        
+
         //cadastro do usuario
-        
+
         axios
-        .post(`http://localhost:3000/users`, novoUsuario)
-        .then(() => {
+          .post(`http://localhost:3000/users`, novoUsuario)
+          .then(() => {
             alert("Usuário cadastrado com sucesso!");
             this.$router.push("/");
           })
