@@ -37,6 +37,7 @@
       label="Selecione o seu plano"
       :items="type_plan"
       v-model="select_plan"
+      variant="underlined"
       :error-messages= "this.errors.select_plan"
     />
 
