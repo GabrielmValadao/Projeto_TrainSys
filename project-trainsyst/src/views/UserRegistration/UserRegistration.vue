@@ -4,46 +4,41 @@
     <v-text-field
       label="Nome"
       type="text"
-      variant="outlined"
+      variant="underlined"
       v-model="name"
-      :class="{ inputError: this.errors.name }"
+      :error-messages="this.errors.name"
     />
-    <span>{{ this.errors.name }}</span>
 
     <v-text-field
       label="E-mail"
       type="email"
-      variant="outlined"
+      variant="underlined"
       v-model="email"
-      :class="{ inputError: this.errors.email }"
+      :error-messages= "this.errors.email"
     />
-    <span>{{ this.errors.email }}</span>
 
     <v-text-field
       label="Senha"
       type="password"
-      variant="outlined"
+      variant="underlined"
       v-model="password"
-      :class="{ inputError: this.errors.password }"
+      :error-messages= "this.errors.password"
     />
-    <span>{{ this.errors.password }}</span>
 
     <v-text-field
       label="Confirme sua senha"
       type="password"
-      variant="outlined"
+      variant="underlined"
       v-model="verify_password"
-      :class="{ inputError: this.errors.verify_password }"
+      :error-messages= "this.errors.verify_password"
     />
-    <span>{{ this.errors.verify_password }}</span>
 
     <v-select
       label="Selecione o seu plano"
       :items="type_plan"
       v-model="select_plan"
-      :class="{ inputError: this.errors.select_plan }"
+      :error-messages= "this.errors.select_plan"
     />
-    <span>{{ this.errors.type_plan }}</span>
 
     <v-btn type="submit">Cadastrar</v-btn>
     <router-link to="/">
@@ -141,11 +136,5 @@ export default {
 </script>
 
 <style scoped>
-span {
-  color: red;
-}
 
-.inputError {
-  border: 1px solid red;
-}
 </style>
