@@ -60,7 +60,13 @@ export default {
           { abortEarly: false }
         );
 
-            }
+            }catch (error) {
+        if (error instanceof yup.ValidationError) {
+          console.log(error);
+          this.errors = captureErrorYup(error);
+        }
         }
 }
+        }
+    }
 </script>
