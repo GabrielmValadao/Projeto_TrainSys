@@ -51,8 +51,12 @@ export default {
                 );
 
                 axios({
-                    url:'http://localhost:3000/sessions'
-                    
+                    url:'http://localhost:3000/sessions',
+                    method: 'POST',
+                    data: {
+                        email: this.email,
+                        password: this.password 
+                    }
                 })
 
             } catch (error) {
