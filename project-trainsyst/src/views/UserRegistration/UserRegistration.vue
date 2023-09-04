@@ -46,7 +46,9 @@
     <span>{{ this.errors.type_plan }}</span>
 
     <v-btn type="submit">Cadastrar</v-btn>
-    <v-btn>Voltar</v-btn>
+    <router-link to="/">
+      <v-btn>Voltar</v-btn>
+    </router-link>
   </v-form>
 </template>
 
