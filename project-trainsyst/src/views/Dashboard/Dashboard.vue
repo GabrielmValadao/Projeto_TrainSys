@@ -1,13 +1,15 @@
 <template>
   <h1>Bem vindo(a), {{ usuarioLogado }}</h1>
-  <v-form @submit.prevent="handleSubmit">
+
     <v-card variant="outlined">
       <v-card-title
         >Alunos Cadastrados
         {{ alunosCadastrados }}
       </v-card-title>
       <v-card-actions>
-        <v-btn type="submit">Adicionar</v-btn>
+        <router-link to="/gerenciamento/aluno">
+            <v-btn>Adicionar</v-btn>
+        </router-link>
       </v-card-actions>
     </v-card>
 
@@ -17,10 +19,12 @@
         {{ exercicios }}
       </v-card-title>
       <v-card-actions>
-        <v-btn type="submit">Adicionar</v-btn>
+        <router-link to="/gerenciamento/exercicios">
+            <v-btn>Adicionar</v-btn>
+        </router-link>
       </v-card-actions>
     </v-card>
-  </v-form>
+  
 </template>
 
 <script>
@@ -44,7 +48,7 @@ export default {
         url: "http://localhost:3000/dashboard",
         method: "GET",
         data: {
-          alunosCadastrados: this.this.alunosCadastrados,
+          alunosCadastrados: this.alunosCadastrados,
           exercicios: this.exercicios,
         },
       })
