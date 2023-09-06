@@ -2,7 +2,7 @@
   <h1>Exercícios</h1>
 
   <div>
-    <h2>Novo Exercicio:</h2>
+    <h2>Novo Exercício:</h2>
     <v-text-field
       v-model="newExercise"
       label="Nome do exercício"
@@ -35,27 +35,16 @@ export default {
   },
 
   mounted() {
-    this.fetchExercises();
+    axios({
+        url: "http://localhost:3000/exercises",
+        method: "GET",
+      })
+      .then((response) => {
+        this.exercises = response.data
+      })
   },
 
   methods: {
-    fetchExercises() {
-      axios({
-        url: "http://localhost:3000/exercises",
-        method: "GET",
-        data: {
-          exercises: [],
-        },
-      });
-
-      .then((response) => {
-        this.exercises= response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    },
-
     addExercise() {
         axios({
           url: "http://localhost:3000/exercises",
@@ -68,7 +57,6 @@ export default {
           .then((response) => {
             console.log(response);
             this.registration = true 
-            this.fetchExercises()
             this.newExercise = ''
             alert("Exercício cadastrado com sucesso");
           })
