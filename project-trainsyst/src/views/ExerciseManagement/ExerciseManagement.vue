@@ -1,77 +1,82 @@
 <template>
   <h1>Exercícios</h1>
-  <v-form @submit.prevent="addExercises">
+
+  <div>
+    <h2>Novo Exercicio:</h2>
     <v-text-field
       v-model="newExercise"
       label="Nome do exercício"
       variant="underlined"
       required
     />
-    <v-btn>Cadastrar exercicio</v-btn>
+    <v-btn @click="addExercise">Cadastrar exercício</v-btn>
+  </div>
 
-    <v-list>
-      <v-list-item v-for="exercise in Exercise" :key="exercise.id"> 
-      <v-list-item-title>
-        {{ exercise.data }}
-      </v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-form>
+  <div>
+    <h2>Lista de exercícios:</h2>
+    <ul>
+      <li v-for="exercise in exercises" :key="exercise.id">
+        {{ exercise.description }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data() {
     return {
       newExercise: "",
-      exercises: []
+      exercises: [],
+      registration: false,
     };
   },
 
-  mounted : {
-      Exercise() {
-      return this.exercise((exercise) => 
-      exercise.includes(this.exercise.data))
-    }
+  mounted() {
+    this.fetchExercises();
   },
 
   methods: {
-     fetchExercises() {
-        axios({
-          url: "http://localhost:3000/exercises",
-          method: "GET",
-          data: {
-            exercises: []
-          },
-        })
+    fetchExercises() {
+      axios({
+        url: "http://localhost:3000/exercises",
+        method: "GET",
+        data: {
+          exercises: [],
+        },
+      });
+
+      .then((response) => {
+        this.exercises= response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     },
 
-    addExercises() {
-      try {
-
+    addExercise() {
         axios({
           url: "http://localhost:3000/exercises",
           method: "POST",
           data: {
-            newExercise: ''
+            newExercise: "",
+            description: this.newExercise,
           },
         })
           .then((response) => {
-            console.log(response)
-          alert('Exercicio cadastrado com sucesso')
-          this.fetchExercises()
-        })
-        .catch((error) => {
-          console.log(error)
-          alert('Erro ao buscar o exercício')
-        })
-
-      } catch (error) {
-        console.log(error)
-      }
-    }
+            console.log(response);
+            this.registration = true 
+            this.fetchExercises()
+            this.newExercise = ''
+            alert("Exercício cadastrado com sucesso");
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Erro ao cadastrar o exercício");
+          });
+    },
   },
 };
 </script>
