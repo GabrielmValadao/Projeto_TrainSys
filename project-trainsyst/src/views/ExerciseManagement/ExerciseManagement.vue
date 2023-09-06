@@ -30,7 +30,6 @@ export default {
     return {
       newExercise: "",
       exercises: [],
-      registration: false,
     };
   },
 
@@ -50,13 +49,11 @@ export default {
           url: "http://localhost:3000/exercises",
           method: "POST",
           data: {
-            newExercise: "",
             description: this.newExercise,
           },
         })
           .then((response) => {
             console.log(response);
-            this.registration = true 
             this.newExercise = ''
             alert("Exercício cadastrado com sucesso");
           })
