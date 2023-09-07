@@ -1,17 +1,18 @@
 <template>
   <h1>Exercícios</h1>
 
-  <div>
+  <v-form refr="form" @submit.prevent="addExercise">
+    <div>
     <h2>Novo Exercício:</h2>
     <v-text-field
-      v-model="newExercise"
-      label="Nome do exercício"
-      variant="underlined"
-      required
+    v-model="newExercise"
+    label="Nome do exercício"
+    variant="underlined"
+    :error-messages="this.errors.newExercise" 
     />
-    <v-btn @click="addExercise">Cadastrar exercício</v-btn>
+    <v-btn type="submit">Cadastrar exercício</v-btn>
   </div>
-
+  
   <div>
     <h2>Lista de exercícios:</h2>
     <ul>
@@ -20,16 +21,20 @@
       </li>
     </ul>
   </div>
+</v-form>
 </template>
 
 <script>
 import axios from "axios";
-
+import * as yup from "yup";
+import { captureErrorYup } from "../../../src/utils/captureErrorYup"; 
 export default {
   data() {
     return {
-      newExercise: "",
+      newExercise: '',
       exercises: [],
+
+      errors: {}
     };
   },
 
@@ -45,23 +50,46 @@ export default {
 
   methods: {
     addExercise() {
+
+      try {
+        const schema = yup.object().shape({
+          newExercise: yup.string().required("O nome do exercício é obrigatório"),
+        });
+
+        schema.validateSync(
+          {
+            newExercise: this.newExercise
+          },
+          { abortEarly: false }
+        );
+
         axios({
           url: "http://localhost:3000/exercises",
           method: "POST",
           data: {
+            newExercise: '',
             description: this.newExercise,
           },
         })
           .then((response) => {
             console.log(response);
-            this.newExercise = ''
             alert("Exercício cadastrado com sucesso");
+            this.newExercise = ''
           })
           .catch((error) => {
-            console.log(error);
-            alert("Erro ao cadastrar o exercício");
+            if(error.response?.data?.message) {
+              alert(error.response.data.message)
+            } else {
+              alert("Erro ao cadastrar o exercício");
+            }
           });
-    },
+    } catch (error) {
+        if (error instanceof yup.ValidationError) {
+          console.log(error);
+          this.errors = captureErrorYup(error);
+        }
+      }
+    }
   },
 };
 </script>
