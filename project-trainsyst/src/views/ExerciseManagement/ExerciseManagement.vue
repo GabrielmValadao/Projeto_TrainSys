@@ -39,16 +39,20 @@ export default {
   },
 
   mounted() {
-    axios({
+    this.getExercise()
+  },
+
+  methods: {
+    getExercise() {
+      axios({
         url: "http://localhost:3000/exercises",
         method: "GET",
       })
       .then((response) => {
         this.exercises = response.data
       })
-  },
+    },
 
-  methods: {
     addExercise() {
 
       try {
@@ -75,6 +79,7 @@ export default {
             console.log(response);
             alert("Exercício cadastrado com sucesso");
             this.newExercise = ''
+            this.getExercise() 
           })
           .catch((error) => {
             if(error.response?.data?.message) {
