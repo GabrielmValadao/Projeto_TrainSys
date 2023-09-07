@@ -9,6 +9,9 @@
   <div>
     <v-text-field v-model="search" label="Digite o nome do aluno" ></v-text-field>
     <v-btn>Buscar aluno</v-btn>
+  
+    <v-data-table :headers="headers" :items="filterStudents"></v-data-table>
+
   </div>
 </template>
 
@@ -16,7 +19,11 @@
 export default {
     data() {
         return {
-            search: ''
+            search: '',
+            headers: [
+                {title: 'Nome', value: 'name'},
+                {title: 'Ações', value: 'actions'}
+            ]
         }
         
     }
