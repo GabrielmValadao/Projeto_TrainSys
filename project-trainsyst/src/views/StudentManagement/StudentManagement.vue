@@ -10,17 +10,22 @@
     <v-text-field
       v-model="search"
       label="Digite o nome do aluno"
-      @input="filterStudents"
+      @input="searchStudent"
     ></v-text-field>
     <v-btn>Buscar aluno</v-btn>
 
     <v-data-table :headers="headers" :items="filteredStudents">
-      <router-link to="/Cadastro/Treino">
-        <v-btn>Montar treino</v-btn>
-      </router-link>
-      <router-link to="/Visualização/Treinos">
-        <v-btn>Ver treino</v-btn>
-      </router-link>
+      <template v-slot:items="props">
+        <td>{{ props.item.name }}</td>
+        <td>
+          <router-link to="/Cadastro/Treino">
+            <v-btn>Montar treino</v-btn>
+          </router-link>
+          <router-link to="/Visualização/Treinos">
+            <v-btn>Ver treino</v-btn>
+          </router-link>
+        </td>
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -59,6 +64,11 @@ export default {
         });
     },
 
+    searchStudent() {
+      //atualiza a lista de alunos ao fazer uma pesquisa
+      this.getStudents() 
+    },
+
     filterStudents() {
       const searchStudent = this.search;
       this.filteredStudents = this.students.filter((student) => {
@@ -69,7 +79,8 @@ export default {
 
   computed: {
     filteredStudents() {
-      return this.students;
+      return this.students.filter(student =>
+        student.name.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
 };
