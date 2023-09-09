@@ -1,27 +1,29 @@
 <template>
   <h1>Cadastro de novos alunos</h1>
   <v-form>
-    <v-text-field type="text" label="Nome completo" required />
-    <v-text-field type="email" label="Email" />
-    <v-text-field type="text" label="Contato" required />
+    <v-text-field type="text" label="Nome completo" v-model="name" required />
+    <v-text-field type="email" label="Email" v-model="email" />
+    <v-text-field type="text" label="Contato" v-model="contact" required />
 
-    <VueDatePicker
-      label="Data de Nascimento"
-      v-model="dateBirth"
+
+      <VueDatePicker
+      placeholder="Data de nascimento"
+      v-model="date_birth"
       :max-date="new Date()"
       locale="pt-BR"
-      cancelText="Cancelar"
+      cancelText="Cancelar" 
       selectText="Selecionar"
       :enable-time-picker="false"
-    />
+      />
 
-    <v-text-field type="text" label="CEP" required />
-    <v-text-field type="text" label="Logradouro" required />
-    <v-text-field type="number" label="Número" required />
-    <v-text-field type="text" label="Bairro" required />
-    <v-text-field type="text" label="Cidade" required />
-    <v-text-field type="text" label="Estado" required />
-    <v-text-field type="text" label="Complemento" required />
+    <v-text-field type="text" label="CEP" v-model="cep" required />
+    <v-text-field type="text" label="Logradouro" v-model="street" required />
+    <v-text-field type="number" label="Número" v-model="number" required />
+    <v-text-field type="text" label="Bairro" v-model="neighborhood" required />
+    <v-text-field type="text" label="Cidade" v-model="city" required />
+    <v-text-field type="text" label="Estado" v-model="province" required />
+    <v-text-field type="text" label="Complemento" v-model="complement" required />
+    <v-btn type="submit">Cadastrar Aluno</v-btn>
   </v-form>
 </template>
 
@@ -29,7 +31,16 @@
 export default {
   data() {
     return {
-      dateBirth: new Date()
+      name: '',
+      email: '',
+      date_birth: '',
+      cep: '',
+      street: '',
+      number: '',
+      neighborhood: '',
+      city: '',
+      complement: '',
+
     }
   }
 }
