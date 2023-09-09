@@ -33,13 +33,17 @@ export default {
     return {
       name: '',
       email: '',
+      contact: '',
       date_birth: '',
       cep: '',
       street: '',
       number: '',
       neighborhood: '',
       city: '',
+      province: '',
       complement: '',
+
+      errors: {}
 
     }
   }
