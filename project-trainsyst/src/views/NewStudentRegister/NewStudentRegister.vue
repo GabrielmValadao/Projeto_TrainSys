@@ -1,6 +1,6 @@
 <template>
   <h1>Cadastro de novos alunos</h1>
-  <v-form>
+  <v-form ref="form" @submit.prevent="handleSubmit"> 
     <v-text-field type="text" label="Nome completo" v-model="name" required />
     <v-text-field type="email" label="Email" v-model="email" />
     <v-text-field type="text" label="Contato" v-model="contact" required />
@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import * as yup from "yup"
+import { captureErrorYup } from "../../../src/utils/captureErrorYup";
+
 export default {
   data() {
     return {
@@ -46,6 +49,60 @@ export default {
       errors: {}
 
     }
+  },
+
+  methdos: {
+    handleSubmit() {
+      try {
+        const schema = yup.object().shape({
+          name: yup.string().required("O nome é obrigatório!"),
+          email: yup.string().email("Email não é valido"),
+          contact: yup.string().required("O contato é obrigatório"),
+          cep: yup.string().min(8).max(9).required("O cep é obrigatório"),
+          street: yup.string().required("O logradouro é obrigatório"),
+          number: yup.number().required("O número é obrigatório"),
+          neighborhood: yup.string().required("O bairro é obrigatório"),
+          city: yup.string().required("A cidade é obrigatória"),
+          province: yup.string().required("O estado é obrigatório"),
+        })
+
+        schema.validateSync (
+          {
+            name: this.name,
+            email: this.email,
+            contact: this.contact,
+            cep: this.cep,
+            street: this.street,
+            number: this.number,
+            neighborhood:this.neighborhood,
+            city: this.city,
+            province: this.province,
+        },
+        { abortEarly: false }
+        )
+
+        const novoAluno = {
+            name: this.name,
+            email: this.email,
+            contact: this.contact,
+            date_birth: this.date_birth,
+            cep: this.cep,
+            street: this.street,
+            number: this.number,
+            neighborhood:this.neighborhood,
+            city: this.city,
+            province: this.province,
+            complement:this.complement
+        }
+
+      } catch (error) {
+        if (error instanceof yup.ValidationError) {
+          console.log(error);
+          this.errors = captureErrorYup(error);
+        }
+
+    } 
   }
+}
 }
 </script>
