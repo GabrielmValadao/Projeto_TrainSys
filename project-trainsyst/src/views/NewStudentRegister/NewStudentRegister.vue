@@ -35,6 +35,7 @@
       label="CEP"
       v-model="cep"
       :error-messages="this.errors.cep"
+      @blur="consultarCep" 
     />
     <v-text-field
       type="text"
@@ -99,6 +100,39 @@ export default {
   },
 
   methods: {
+    consultarCep() {
+      // Nova variável "cep" somente com dígitos.
+      var cep = this.endereco.cep.replace(/\D/g, "");
+
+      // Verifica se campo CEP possui valor informado.
+      if (cep !== "") {
+        var validacep = /^[0-9]{8}$/;
+
+        if (validacep.test(cep)) {
+          // Faz a consulta na API do ViaCEP.
+          fetch("https://viacep.com.br/ws/${cep}/json/")
+            .then((response) => response.json())
+            .then((data) => {
+              if (!data.erro) {
+                this.endereco.logradouro = data.logradouro;
+                this.endereco.bairro = data.bairro;
+                this.endereco.cidade = data.localidade;
+                this.endereco.estado = data.uf;
+              } else {
+                this.mensagem = "Cep não encontrado.";
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+              this.mensagem =
+                "Erro ao consultar o cep. Tente novamente mais tarde.";
+            });
+        } else {
+          this.mensagem = "Formato de cep inválido.";
+        }
+      }
+    },
+
     handleSubmit() {
       try {
         const schema = yup.object().shape({
