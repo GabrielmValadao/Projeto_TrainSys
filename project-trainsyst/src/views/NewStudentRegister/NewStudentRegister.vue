@@ -1,9 +1,24 @@
 <template>
   <h1>Cadastro de novos alunos</h1>
   <v-form ref="form" @submit.prevent="handleSubmit">
-    <v-text-field type="text" label="Nome completo" v-model="name" :errors-messages="this.errors.name" />
-    <v-text-field type="email" label="Email" v-model="email" :errors-messages="this.errors.email"/>
-    <v-text-field type="text" label="Contato" v-model="contact"  :errors-messages="this.errors.contact"/>
+    <v-text-field
+      type="text"
+      label="Nome completo"
+      v-model="name"
+      :errors-messages="this.errors.name"
+    />
+    <v-text-field
+      type="email"
+      label="Email"
+      v-model="email"
+      :errors-messages="this.errors.email"
+    />
+    <v-text-field
+      type="text"
+      label="Contato"
+      v-model="contact"
+      :errors-messages="this.errors.contact"
+    />
 
     <VueDatePicker
       placeholder="Data de nascimento"
@@ -15,25 +30,54 @@
       :enable-time-picker="false"
     />
 
-    <v-text-field type="text" label="CEP" v-model="cep" :errors-messages="this.errors.cep" />
-    <v-text-field type="text" label="Logradouro" v-model="street" :errors-messages="this.errors.street" />
-    <v-text-field type="number" label="Número" v-model="number" :errors-messages="this.errors.number" />
-    <v-text-field type="text" label="Bairro" v-model="neighborhood" :errors-messages="this.errors.neighborhood" />
-    <v-text-field type="text" label="Cidade" v-model="city" :errors-messages="this.errors.city" />
-    <v-text-field type="text" label="Estado" v-model="province" :errors-messages="this.errors.province" />
     <v-text-field
       type="text"
-      label="Complemento"
-      v-model="complement"
-      required
+      label="CEP"
+      v-model="cep"
+      :errors-messages="this.errors.cep"
     />
+    <v-text-field
+      type="text"
+      label="Logradouro"
+      v-model="street"
+      :errors-messages="this.errors.street"
+    />
+    <v-text-field
+      type="number"
+      label="Número"
+      v-model="number"
+      :errors-messages="this.errors.number"
+    />
+    <v-text-field
+      type="text"
+      label="Bairro"
+      v-model="neighborhood"
+      :errors-messages="this.errors.neighborhood"
+    />
+    <v-text-field
+      type="text"
+      label="Cidade"
+      v-model="city"
+      :errors-messages="this.errors.city"
+    />
+    <v-text-field
+      type="text"
+      label="Estado"
+      v-model="province"
+      :errors-messages="this.errors.province"
+    />
+    <v-text-field type="text" label="Complemento" v-model="complement" />
     <v-btn type="submit">Cadastrar Aluno</v-btn>
+    <router-link to="/Gerenciamento/Aluno">
+      <v-btn>Voltar</v-btn>
+    </router-link>
   </v-form>
 </template>
 
 <script>
 import * as yup from "yup";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
+import axios from "axios";
 
 export default {
   data() {
@@ -84,20 +128,31 @@ export default {
           { abortEarly: false }
         );
 
-        const novoAluno = {
-          name: this.name,
-          email: this.email,
-          contact: this.contact,
-          date_birth: this.date_birth,
-          cep: this.cep,
-          street: this.street,
-          number: this.number,
-          neighborhood: this.neighborhood,
-          city: this.city,
-          province: this.province,
-          complement: this.complement,
-        };
+        //cadastro de novo aluno
 
+        axios({
+          url: "http://localhost:3000/students",
+          method: "POST",
+          data: {
+            name: this.name,
+            email: this.email,
+            contact: this.contact,
+            date_birth: this.date_birth,
+            cep: this.cep,
+            street: this.street,
+            number: this.number,
+            neighborhood: this.neighborhood,
+            city: this.city,
+            province: this.province,
+            complement: this.complement,
+          },
+        })
+          .then(() => {
+            alert("Aluno cadastrado com sucesso!");
+          })
+          .catch(() => {
+            alert("Erro ao cadastrar novo aluno!");
+          });
       } catch (error) {
         if (error instanceof yup.ValidationError) {
           console.log(error);
