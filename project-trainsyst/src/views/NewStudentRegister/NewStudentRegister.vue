@@ -5,19 +5,19 @@
       type="text"
       label="Nome completo"
       v-model="name"
-      :errors-messages="this.errors.name"
+      :error-messages="this.errors.name"
     />
     <v-text-field
       type="email"
       label="Email"
       v-model="email"
-      :errors-messages="this.errors.email"
+      :error-messages="this.errors.email"
     />
     <v-text-field
       type="text"
       label="Contato"
       v-model="contact"
-      :errors-messages="this.errors.contact"
+      :error-messages="this.errors.contact"
     />
 
     <VueDatePicker
@@ -34,37 +34,37 @@
       type="text"
       label="CEP"
       v-model="cep"
-      :errors-messages="this.errors.cep"
+      :error-messages="this.errors.cep"
     />
     <v-text-field
       type="text"
       label="Logradouro"
       v-model="street"
-      :errors-messages="this.errors.street"
+      :error-messages="this.errors.street"
     />
     <v-text-field
       type="number"
       label="Número"
       v-model="number"
-      :errors-messages="this.errors.number"
+      :error-messages="this.errors.number"
     />
     <v-text-field
       type="text"
       label="Bairro"
       v-model="neighborhood"
-      :errors-messages="this.errors.neighborhood"
+      :error-messages="this.errors.neighborhood"
     />
     <v-text-field
       type="text"
       label="Cidade"
       v-model="city"
-      :errors-messages="this.errors.city"
+      :error-messages="this.errors.city"
     />
     <v-text-field
       type="text"
       label="Estado"
       v-model="province"
-      :errors-messages="this.errors.province"
+      :error-messages="this.errors.province"
     />
     <v-text-field type="text" label="Complemento" v-model="complement" />
     <v-btn type="submit">Cadastrar Aluno</v-btn>
@@ -98,7 +98,7 @@ export default {
     };
   },
 
-  methdos: {
+  methods: {
     handleSubmit() {
       try {
         const schema = yup.object().shape({
@@ -149,6 +149,8 @@ export default {
         })
           .then(() => {
             alert("Aluno cadastrado com sucesso!");
+            //reseta o formulario 
+            this.$refs.form.reset(); 
           })
           .catch(() => {
             alert("Erro ao cadastrar novo aluno!");
