@@ -24,25 +24,25 @@
         required
       />
       <v-text-field
-        label="Tempo de Pausa"
+        label="Tempo de Pausa (em horas : minutos)"
         v-model="breakTime"
-        type="text"
+        type="time"
         required
       />
-      <v-text-field label="Observações do Treino" v-model="observations" />
       <v-select
         label="Dia da Semana"
         v-model="selectedDay"
         :items="daysOfWeek"
         required
       />
+      <v-text-field label="Observações do Treino" v-model="observations" />
       <v-btn type="submit">Cadastrar Treino</v-btn>
     </v-form>
   </v-container>
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 export default {
   data() {
     return {
@@ -65,6 +65,10 @@ export default {
     };
   },
 
+  mounted() {
+        this.fetchExercises()
+  },
+
   methods: {
     handleSubmit() {
       const cadastroTreinoData = {
@@ -77,31 +81,31 @@ export default {
       };
       axios({
         url: (`http://localhost:3000/workouts`, cadastroTreinoData),
-        method: "POST"
+        method: "POST",
       })
-      .then((response) => {
-        alert('Cadastro de treino realizado com sucesso!')
-        console.log(response) 
-      })
-      .catch((error) => {
-        alert('Houve um erro ao cadastrar o treino!')
-        console.log(error)
-      })
+        .then((response) => {
+          alert("Cadastro de treino realizado com sucesso!");
+          console.log(response);
+        })
+        .catch((error) => {
+          alert("Houve um erro ao cadastrar o treino!");
+          console.log(error);
+        });
     },
 
     fetchExercises() {
-        axios({
-                url:("http://localhost:3000/exercises"),
-                methods: "GET"
-        })
+      axios({
+        url: "http://localhost:3000/exercises",
+        methods: "GET",
+      })
         .then((response) => {
-                this.exercises = response.data 
+          this.exercises = response.data;
         })
         .catch((error) => {
-                console.log('error ao fazer o get dos exercícios')
-                console.log(error)      
-        })
-    }
+          console.log("error ao fazer o get dos exercícios");
+          console.log(error);
+        });
+    },
   },
 };
 </script>
