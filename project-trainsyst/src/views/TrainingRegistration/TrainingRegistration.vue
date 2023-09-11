@@ -36,7 +36,9 @@
         required
       />
       <v-text-field label="Observações do Treino" v-model="observations" />
+      <router-link to="/Gerenciamento/Aluno"><v-btn>Cancelar</v-btn></router-link>
       <v-btn type="submit">Cadastrar Treino</v-btn>
+
     </v-form>
   </v-container>
 </template>
