@@ -46,15 +46,12 @@ export default {
     fetchData() {
       axios({
         url: "http://localhost:3000/dashboard",
-        method: "GET",
-        data: {
-          alunosCadastrados: this.alunosCadastrados,
-          exercicios: this.exercicios,
-        },
+        method: "GET"
       })
         .then((response) => {
-          this.alunosCadastrados = response.data.alunosCadastrados;
-          this.exercicios = response.data.exercicios;
+          this.alunosCadastrados = response.data.amount_students;
+          this.exercicios = response.data.amount_exercises;
+          this.nomeUsuario = localStorage.getItem("nomeUsuario")
         })
         .catch((error) => {
           console.log(error);
