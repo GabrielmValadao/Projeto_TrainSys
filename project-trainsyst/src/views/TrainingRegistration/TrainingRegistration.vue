@@ -88,6 +88,20 @@ export default {
         console.log(error)
       })
     },
+
+    fetchExercises() {
+        axios({
+                url:("http://localhost:3000/exercises"),
+                methods: "GET"
+        })
+        .then((response) => {
+                this.exercises = response.data 
+        })
+        .catch((error) => {
+                console.log('error ao fazer o get dos exercícios')
+                console.log(error)      
+        })
+    }
   },
 };
 </script>
