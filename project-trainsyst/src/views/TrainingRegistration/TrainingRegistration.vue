@@ -1,7 +1,7 @@
 <template>
   <h1>Cadastro de Treino</h1>
   <v-container>
-    <v-form ref="form" @submit.prevent="handleSubmit">
+    <v-form @submit.prevent="handleSubmit">
       <v-select
         label="Exercício"
         v-model="selectedExercise"
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
   data() {
     return {
@@ -66,7 +67,7 @@ export default {
 
   methods: {
     handleSubmit() {
-      const treinoData = {
+      const cadastroTreinoData = {
         exercise_id: this.selectedExercise,
         repetitions: this.repetitions,
         weight: this.weight,
@@ -74,6 +75,18 @@ export default {
         observations: this.observations,
         day: this.selectedDay,
       };
+      axios({
+        url: (`http://localhost:3000/workouts`, cadastroTreinoData),
+        method: "POST"
+      })
+      .then((response) => {
+        alert('Cadastro de treino realizado com sucesso!')
+        console.log(response) 
+      })
+      .catch((error) => {
+        alert('Houve um erro ao cadastrar o treino!')
+        console.log(error)
+      })
     },
   },
 };
