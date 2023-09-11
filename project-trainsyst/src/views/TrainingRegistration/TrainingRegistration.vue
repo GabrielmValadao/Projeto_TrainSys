@@ -46,8 +46,8 @@ export default {
   data() {
     return {
       exercises: [], // Para armazenar os exercícios obtidos da API
-      selectedExercise: null, 
-      repetitions: 1, 
+      selectedExercise: null,
+      repetitions: 1,
       weight: null,
       breakTime: null,
       observations: "",
@@ -62,6 +62,19 @@ export default {
       ],
       selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
     };
+  },
+
+  methods: {
+    handleSubmit() {
+      const treinoData = {
+        exercise_id: this.selectedExercise,
+        repetitions: this.repetitions,
+        weight: this.weight,
+        break_time: this.breakTime,
+        observations: this.observations,
+        day: this.selectedDay,
+      };
+    },
   },
 };
 </script>
