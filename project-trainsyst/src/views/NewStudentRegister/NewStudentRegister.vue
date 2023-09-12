@@ -35,7 +35,7 @@
       label="CEP"
       v-model="cep"
       :error-messages="this.errors.cep"
-      @blur="consultarCep" 
+      @blur="consultarCep"
     />
     <v-text-field
       type="text"
@@ -94,7 +94,6 @@ export default {
       city: "",
       province: "",
       complement: "",
-
       errors: {},
     };
   },
@@ -102,7 +101,7 @@ export default {
   methods: {
     consultarCep() {
       // Nova variável "cep" somente com dígitos.
-      var cep = this.endereco.cep.replace(/\D/g, "");
+      var cep = this.cep.replace(/\D/g, "");
 
       // Verifica se campo CEP possui valor informado.
       if (cep !== "") {
@@ -110,25 +109,24 @@ export default {
 
         if (validacep.test(cep)) {
           // Faz a consulta na API do ViaCEP.
-          fetch("https://viacep.com.br/ws/${cep}/json/")
+          fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then((response) => response.json())
             .then((data) => {
               if (!data.erro) {
-                this.endereco.logradouro = data.logradouro;
-                this.endereco.bairro = data.bairro;
-                this.endereco.cidade = data.localidade;
-                this.endereco.estado = data.uf;
+                this.street = data.street;
+                this.neighborhood = data.neighborhood;
+                this.city = data.city;
+                this.province = data.province;
               } else {
-                this.mensagem = "Cep não encontrado.";
+                alert("Cep não encontrado");
               }
             })
             .catch((error) => {
               console.error(error);
-              this.mensagem =
-                "Erro ao consultar o cep. Tente novamente mais tarde.";
+              alert("Erro ao consultar o cep");
             });
         } else {
-          this.mensagem = "Formato de cep inválido.";
+          alert("Formato de cep inválido");
         }
       }
     },
@@ -183,8 +181,8 @@ export default {
         })
           .then(() => {
             alert("Aluno cadastrado com sucesso!");
-            //reseta o formulario 
-            this.$refs.form.reset(); 
+            //reseta o formulario
+            this.$refs.form.reset();
           })
           .catch(() => {
             alert("Erro ao cadastrar novo aluno!");
