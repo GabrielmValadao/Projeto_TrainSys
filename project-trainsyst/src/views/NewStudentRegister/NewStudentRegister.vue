@@ -113,10 +113,10 @@ export default {
             .then((response) => response.json())
             .then((data) => {
               if (!data.erro) {
-                this.street = data.street;
-                this.neighborhood = data.neighborhood;
-                this.city = data.city;
-                this.province = data.province;
+                this.street = data.logradouro;
+                this.neighborhood = data.bairro;
+                this.city = data.localidade;
+                this.province = data.uf;
               } else {
                 alert("Cep não encontrado");
               }
