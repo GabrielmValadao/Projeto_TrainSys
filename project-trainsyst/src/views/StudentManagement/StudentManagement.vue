@@ -10,22 +10,37 @@
     <v-text-field
       v-model="search"
       label="Digite o nome do aluno"
-      @input="searchStudent"
     ></v-text-field>
-    <v-btn>Buscar aluno</v-btn>
+    <v-btn @click="filteredStudents">Buscar aluno</v-btn>
 
-    <v-data-table :headers="headers" :items="filteredStudents">
-      <template v-slot:items="props">
-        <td>{{ props.item.name }}</td>
-        <td>
-          <router-link to="/Cadastro/Treino">
-            <v-btn>Montar treino</v-btn>
-          </router-link>
-          <router-link to="/Visualização/Treinos">
-            <v-btn>Ver treino</v-btn>
-          </router-link>
-        </td>
-      </template>
+    <br />
+
+    <v-data-table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="student in studentsFilter" :key="student.id">
+          <td>
+            {{ student.name }}
+          </td>
+          <td>
+            {{ student.email }}
+          </td>
+          <td>
+            <router-link to="/Cadastro/Treino">
+              <v-btn>Montar treino</v-btn>
+            </router-link>
+            <router-link to="/Visualização/Treinos">
+              <v-btn>Ver treino</v-btn>
+            </router-link>
+          </td>
+        </tr>
+      </tbody>
     </v-data-table>
   </div>
 </template>
@@ -38,10 +53,7 @@ export default {
     return {
       students: [],
       search: "",
-      headers: [
-        { title: "Nome", value: "name" },
-        { title: "Ações", value: "actions" },
-      ],
+      studentsFilter: [],
     };
   },
 
@@ -56,7 +68,8 @@ export default {
         method: "GET",
       })
         .then((response) => {
-          this.students = response.data;
+          this.students = response.data.students;
+          this.studentsFilter = this.students;
         })
         .catch((error) => {
           console.log(error);
@@ -64,24 +77,14 @@ export default {
         });
     },
 
-    searchStudent() {
-      //atualiza a lista de alunos ao fazer uma pesquisa
-      this.getStudents() 
-    },
-
-    filterStudents() {
-      const searchStudent = this.search;
-      this.filteredStudents = this.students.filter((student) => {
-        return student.state.includes(searchStudent);
+    filteredStudents() {
+      this.studentsFilter = this.students.filter((student) => {
+        return (
+          student.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          student.email.toLowerCase().includes(this.search.toLowerCase())
+        );
       });
     },
-  },
-
-  computed: {
-    filteredStudents() {
-      return this.students.filter(student =>
-        student.name.toLowerCase().includes(this.search.toLowerCase()));
-    },
-  },
-};
+},
+}
 </script>
