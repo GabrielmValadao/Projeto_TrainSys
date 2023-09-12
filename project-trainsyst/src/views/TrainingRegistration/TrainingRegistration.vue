@@ -3,13 +3,16 @@
   <v-container>
     <v-form @submit.prevent="handleSubmit">
       <v-select
-        label="Exercício"
+        label="Selecione o exercício"
         v-model="selectedExercise"
         :items="exercises"
-        item-text="name"
-        item-value="id"
         required
-      />
+      >
+        <option v-for="exercise in exercises" :key="exercise.id">
+          {{ exercise.description }}
+        </option>
+      </v-select>
+
       <v-text-field
         label="Quantidade de Repetições"
         v-model="repetitions"
@@ -36,9 +39,10 @@
         required
       />
       <v-text-field label="Observações do Treino" v-model="observations" />
-      <router-link to="/Gerenciamento/Aluno"><v-btn>Cancelar</v-btn></router-link>
+      <router-link to="/Gerenciamento/Aluno"
+        ><v-btn>Cancelar</v-btn></router-link
+      >
       <v-btn type="submit">Cadastrar Treino</v-btn>
-
     </v-form>
   </v-container>
 </template>
@@ -64,15 +68,17 @@ export default {
         { title: "Domingo", value: "domingo" },
       ],
       selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
+
+      errors: {}
     };
   },
 
   mounted() {
-        this.fetchExercises()
+    this.fetchExercises();
   },
 
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       const cadastroTreinoData = {
         exercise_id: this.selectedExercise,
         repetitions: this.repetitions,
@@ -81,32 +87,30 @@ export default {
         observations: this.observations,
         day: this.selectedDay,
       };
-      axios({
-        url: (`http://localhost:3000/workouts`, cadastroTreinoData),
-        method: "POST",
-      })
-        .then((response) => {
-          alert("Cadastro de treino realizado com sucesso!");
-          console.log(response);
-        })
-        .catch((error) => {
-          alert("Houve um erro ao cadastrar o treino!");
-          console.log(error);
-        });
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/workouts",
+          cadastroTreinoData
+        );
+
+        alert("Treino cadastrado com sucesso") 
+        this.exercises = response.data 
+      } catch (error) {
+        alert("Houve um erro ao cadastrar o treino!");
+        console.log(error);
+      }
     },
 
-    fetchExercises() {
-      axios({
-        url: "http://localhost:3000/exercises",
-        methods: "GET",
-      })
-        .then((response) => {
-          this.exercises = response.data;
-        })
-        .catch((error) => {
-          console.log("error ao fazer o get dos exercícios");
-          console.log(error);
-        });
+    async fetchExercises() {
+      try {
+        const response = await axios.get("http://localhost:3000/exercises");
+
+        this.exercises = response.data;
+      } catch (error) {
+        alert("Erro ao buscar exercício");
+        console.log("erro ao fazer o get do exercício");
+        console.log(error);
+      }
     },
   },
 };
