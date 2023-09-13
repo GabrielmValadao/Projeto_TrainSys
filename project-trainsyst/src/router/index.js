@@ -45,12 +45,12 @@ const router = createRouter({
       component: NewStudentRegister
     },
     {
-      path: '/Cadastro/Treino',
+      path: '/Cadastro/:id/Treino/',
       name: 'TrainingRegistration',
       component: TrainingRegistration
     },
     {
-      path: '/Visualização/Treinos',
+      path: '/Visualização/:id/Treino',
       name: 'TrainingVisualization',
       component: TrainingVisualization
     },
