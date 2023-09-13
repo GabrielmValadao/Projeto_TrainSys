@@ -15,7 +15,7 @@
 
     <br />
 
-    <v-data-table>
+    <table>
       <thead>
         <tr>
           <th>Nome</th>
@@ -32,16 +32,16 @@
             {{ student.email }}
           </td>
           <td>
-            <router-link to="/Cadastro/Treino">
+            <router-link :to="`/Cadastro/${student.id}/Treino/`">
               <v-btn>Montar treino</v-btn>
             </router-link>
-            <router-link to="/Visualização/Treinos">
+            <router-link :to="`/Visualização/${student.id}/Treino/`">
               <v-btn>Ver treino</v-btn>
             </router-link>
           </td>
         </tr>
       </tbody>
-    </v-data-table>
+    </table>
   </div>
 </template>
 
