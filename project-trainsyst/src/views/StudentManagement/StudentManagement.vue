@@ -35,7 +35,7 @@
             <router-link :to="`/Cadastro/${student.id}/Treino/`">
               <v-btn>Montar treino</v-btn>
             </router-link>
-            <router-link :to="`/Visualização/${student.id}/Treino/`">
+            <router-link :to="`/Visualizacao/${student.id}/Treino/`">
               <v-btn>Ver treino</v-btn>
             </router-link>
           </td>
