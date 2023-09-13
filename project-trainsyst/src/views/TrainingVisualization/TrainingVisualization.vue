@@ -8,7 +8,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-        list: []
+        listWourkouts: [],
     };
   },
 
@@ -18,7 +18,8 @@ export default {
         method: "GET"
     })
     .then(() => {
-        const response = response.data 
+        const response = []
+        this.listWourkouts = response 
     })
     .catch((error) => {
         console.log("error ao fazer o get", error)
