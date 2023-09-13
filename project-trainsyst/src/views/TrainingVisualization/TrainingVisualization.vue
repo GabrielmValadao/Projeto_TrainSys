@@ -18,8 +18,7 @@ export default {
         method: "GET"
     })
     .then(() => {
-        const response = []
-        this.listWourkouts = response 
+        this.listWourkouts = response.data.wourkouts 
     })
     .catch((error) => {
         console.log("error ao fazer o get", error)
