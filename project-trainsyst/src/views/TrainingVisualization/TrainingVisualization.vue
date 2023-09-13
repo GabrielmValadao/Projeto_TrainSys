@@ -3,17 +3,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
-    return {};
+    return {
+        list: []
+    };
   },
 
   mounted() {
-
+    axios({
+        url: `http://localhost:3000/workouts?student_id=${this.$route.params.id}`,
+        method: "GET"
+    })
+    .then(() => {
+        const response = response.data 
+    })
+    .catch((error) => {
+        console.log("error ao fazer o get", error)
+    })
   },
 
   methods: {
-    
+
   }
 };
 </script>
