@@ -58,6 +58,7 @@ export default {
       weight: null,
       breakTime: null,
       observations: "",
+      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
       daysOfWeek: [
         { title: "Segunda-feira", value: "segunda" },
         { title: "Terça-feira", value: "terca" },
@@ -67,7 +68,6 @@ export default {
         { title: "Sábado", value: "sabado" },
         { title: "Domingo", value: "domingo" },
       ],
-      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
 
       errors: {},
     };
