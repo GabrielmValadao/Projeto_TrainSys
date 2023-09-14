@@ -110,7 +110,11 @@ export default {
         .then(() => {
           this.$refs.form.reset()
           alert("Treino cadastrado com sucesso!")
-        });
+        })
+        .catch((error) => {
+          alert("Erro ao cadastrar exercício")
+          console.log(error)
+        })
       }
     } catch (error) {
         if (error instanceof yup.ValidationError) {
