@@ -11,7 +11,7 @@
               <v-list-item-title>
                 {{ workout.exercise_description }} |
                 {{ workout.repetitions }} repetições | {{ workout.weight }}KG |
-                {{ workout.break_time }}min
+                {{ workout.break_time }} minutos de pausa
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -33,10 +33,10 @@
             <v-list-item v-for="workout in wourkoutDay[daySelected]" :key="workout.id">
               <v-list-item-content>
                 <v-list-item-title>
-                  {{ workout.exercise_description }}
-                  {{ workout.repetitions }} repetições 
-                  {{ workout.weight }} kg
-                  {{ workout.break_time }} min
+                  {{ workout.exercise_description }} |
+                  {{ workout.repetitions }} repetições | 
+                  {{ workout.weight }} Kg |
+                  {{ workout.break_time }} minutos de pausa
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>

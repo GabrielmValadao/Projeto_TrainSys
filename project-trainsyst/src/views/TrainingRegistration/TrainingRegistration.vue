@@ -58,6 +58,7 @@ export default {
       weight: null,
       breakTime: null,
       observations: "",
+      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
       daysOfWeek: [
         { title: "Segunda-feira", value: "segunda" },
         { title: "Terça-feira", value: "terca" },
@@ -67,7 +68,6 @@ export default {
         { title: "Sábado", value: "sabado" },
         { title: "Domingo", value: "domingo" },
       ],
-      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
 
       errors: {},
     };
@@ -110,7 +110,11 @@ export default {
         .then(() => {
           this.$refs.form.reset()
           alert("Treino cadastrado com sucesso!")
-        });
+        })
+        .catch((error) => {
+          alert("Erro ao cadastrar exercício")
+          console.log(error)
+        })
       }
     } catch (error) {
         if (error instanceof yup.ValidationError) {
