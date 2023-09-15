@@ -14,25 +14,25 @@
         <v-toolbar-title>
           <router-link to="/Dashboard"
             >
-            <v-btn variant="outlined" color="rgb(223, 70, 97)"
+            <v-btn variant="plain" color="rgb(223, 70, 97)"
               ><v-icon icon="mdi-home" size="large"></v-icon>Home</v-btn
             ></router-link
           >
 
           <router-link to="/Gerenciamento/Aluno"
-            ><v-btn variant="outlined" color="rgb(223, 70, 97)"
+            ><v-btn variant="plain" color="rgb(223, 70, 97)"
               ><v-icon icon="mdi-weight-lifter" size="large"></v-icon>Alunos</v-btn
             ></router-link
           >
 
           <router-link to="/Gerenciamento/Exercicios"
-            ><v-btn variant="outlined" color="rgb(223, 70, 97)"
+            ><v-btn variant="plain" color="rgb(223, 70, 97)"
               ><v-icon icon="mdi-dumbbell" size="large"></v-icon>Exercícios</v-btn
             ></router-link
           >
 
           <router-link to="/"
-            ><v-btn variant="outlined" color="rgb(223, 70, 97)"
+            ><v-btn variant="plain" color="rgb(223, 70, 97)"
               ><v-icon icon="mdi-exit-run" size="large"></v-icon>Sair</v-btn
             ></router-link
           >
