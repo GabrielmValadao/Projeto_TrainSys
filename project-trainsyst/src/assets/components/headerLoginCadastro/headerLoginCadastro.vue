@@ -1,11 +1,11 @@
 <template>
-        <v-app-bar app color="primary">
-            <v-img src="../../../public/logo trainsys.png" max-weight="50" alt="logo TrainSys" />
-        </v-app-bar>
+        <v-app>
+            <v-img src="../../../../src/public/logo trainsys.png" alt="logo TrainSys" />
+        </v-app>
 </template>
 
 <script>
 export default {
-    name: 'HeaderLoginCadastro'
+    name: 'Header'
 }
 </script>
