@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar height="200" app color="rgb(67, 21, 29)">
+  <v-app-bar height="150" app color="rgb(67, 21, 29)">
     <v-img
       src="../../../../src/public/logo trainsys.png"
       max-weight="50"
