@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <h1>Cadastro de novos alunos</h1>
   <v-form ref="form" @submit.prevent="handleSubmit">
     <v-text-field
@@ -76,6 +79,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
 import * as yup from "yup";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
 import axios from "axios";
@@ -96,6 +100,10 @@ export default {
       complement: "",
       errors: {},
     };
+  },
+
+  components: {
+    Header,
   },
 
   methods: {

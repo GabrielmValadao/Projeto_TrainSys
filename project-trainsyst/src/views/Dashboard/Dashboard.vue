@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <h1>Bem vindo(a), {{ usuarioLogado }}</h1>
 
     <v-card variant="outlined">
@@ -28,6 +31,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
 import axios from "axios";
 export default {
   data() {
@@ -36,6 +40,10 @@ export default {
       exercicios: 0,
       usuarioLogado: localStorage.getItem("user_name"),
     };
+  },
+
+  components: {
+    Header,
   },
 
   mounted() {
