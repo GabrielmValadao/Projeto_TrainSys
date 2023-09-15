@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
     <v-container>
       <h2>Treinos - {{ studentName }}</h2>
       <v-divider></v-divider>
@@ -48,7 +51,8 @@
   
   <script>
   import axios from "axios";
-  
+  import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
+
   export default {
     data() {
       return {
@@ -57,6 +61,10 @@
         daySelected: null, 
       };
     },
+
+    components: {
+    Header,
+  },
     mounted() {
       const studentId = this.$route.params.id;
       this.getTraining(studentId);

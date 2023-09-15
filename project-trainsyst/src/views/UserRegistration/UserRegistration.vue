@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <h1>Crie sua conta</h1>
   <v-form ref="form" @submit.prevent="handleSubmit">
     <v-text-field
@@ -49,6 +52,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/headerLoginCadastro/headerLoginCadastro.vue"
 import * as yup from "yup";
 import axios from "axios";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
@@ -69,6 +73,10 @@ export default {
 
       errors: {},
     };
+  },
+
+  components: {
+    Header,
   },
 
   methods: {

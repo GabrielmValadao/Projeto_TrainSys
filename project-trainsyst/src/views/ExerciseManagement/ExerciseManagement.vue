@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <h1>Exercícios</h1>
 
   <v-form refr="form" @submit.prevent="addExercise">
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
 import axios from "axios";
 import * as yup from "yup";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup"; 
@@ -36,6 +40,9 @@ export default {
 
       errors: {}
     };
+  },
+  components: {
+    Header,
   },
 
   mounted() {

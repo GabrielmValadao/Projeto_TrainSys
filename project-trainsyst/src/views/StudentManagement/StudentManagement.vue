@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <div>
     <h1>Alunos</h1>
     <router-link to="/cadastro/novo/aluno">
@@ -46,6 +49,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
 import axios from "axios";
 
 export default {
@@ -55,6 +59,10 @@ export default {
       search: "",
       studentsFilter: [],
     };
+  },
+
+  components: {
+    Header,
   },
 
   mounted() {

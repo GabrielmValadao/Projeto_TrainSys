@@ -1,4 +1,7 @@
 <template>
+  <v-app>
+    <Header></Header>
+  </v-app>
   <h1>Cadastro de Treino</h1>
   <v-container>
     <v-form ref="form" @submit.prevent="handleSubmit">
@@ -44,6 +47,7 @@
 </template>
 
 <script>
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
 import axios from "axios";
 import * as yup from "yup";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
@@ -71,6 +75,10 @@ export default {
 
       errors: {},
     };
+  },
+
+  components: {
+    Header,
   },
 
   mounted() {
