@@ -3,7 +3,11 @@
     <Header></Header>
   </v-app>
   <div class="d-flex justify-center align-center">
-    <h2>Alunos</h2>
+    <h2>
+      Alunos
+      
+      <v-icon icon="mdi-weight-lifter" color="rgb(223, 70, 97)" size="large"></v-icon>
+    </h2>
   </div>
 
   <div class="pa-2 ma-2">
