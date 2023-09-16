@@ -2,19 +2,26 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <div>
-    <h1>Alunos</h1>
-    <router-link to="/cadastro/novo/aluno">
-      <v-btn>Cadastrar novo aluno</v-btn>
-    </router-link>
+  <div class="d-flex justify-center align-center">
+    <h2>Alunos</h2>
   </div>
 
-  <div>
-    <v-text-field
-      v-model="search"
-      label="Digite o nome do aluno"
-    ></v-text-field>
-    <v-btn @click="filteredStudents">Buscar aluno</v-btn>
+  <div class="pa-2 ma-2">
+    <div class="d-flex justify-space-between align-center">
+      <v-text-field
+        class="ma-2"
+        variant="underlined"
+        v-model="search"
+        label="Digite o nome do aluno"
+      ></v-text-field>
+
+      <v-btn @click="filteredStudents" class="mr-5 ma-2"  color="#DBD5B5"
+        >Buscar aluno</v-btn
+      >
+      <router-link to="/cadastro/novo/aluno">
+        <v-btn class="mr-5 ma-2" color="#DBD5B5">Cadastrar novo aluno</v-btn>
+      </router-link>
+    </div>
 
     <br />
 
@@ -36,10 +43,10 @@
           </td>
           <td>
             <router-link :to="`/Cadastro/${student.id}/Treino/`">
-              <v-btn>Montar treino</v-btn>
+              <v-btn color="#DBD5B5" class="mr-5">Montar treino</v-btn>
             </router-link>
             <router-link :to="`/Visualizacao/${student.id}/Treino/`">
-              <v-btn>Ver treino</v-btn>
+              <v-btn color="#DBD5B5">Ver treino</v-btn>
             </router-link>
           </td>
         </tr>
@@ -49,7 +56,7 @@
 </template>
 
 <script>
-import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue";
 import axios from "axios";
 
 export default {
@@ -93,6 +100,23 @@ export default {
         );
       });
     },
-},
-}
+  },
+};
 </script>
+
+<style scoped>
+table {
+      border-collapse: collapse; 
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid black; 
+      padding: 8px; 
+      text-align: left; 
+    }
+
+    th {
+      background-color: #DBD5B5; 
+    }
+</style>
