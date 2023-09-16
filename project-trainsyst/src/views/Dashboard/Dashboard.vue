@@ -2,36 +2,42 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h1>Bem vindo(a), {{ usuarioLogado }}</h1>
-
-    <v-card variant="outlined">
-      <v-card-title
-        >Alunos Cadastrados
-        {{ alunosCadastrados }}
-      </v-card-title>
-      <v-card-actions>
-        <router-link to="/gerenciamento/aluno">
-            <v-btn>Adicionar</v-btn>
-        </router-link>
-      </v-card-actions>
-    </v-card>
-
-    <v-card variant="outlined">
-      <v-card-title>
-        Exercícios
-        {{ exercicios }}
-      </v-card-title>
-      <v-card-actions>
-        <router-link to="/gerenciamento/exercicios">
-            <v-btn>Adicionar</v-btn>
-        </router-link>
-      </v-card-actions>
-    </v-card>
-  
+  <div>
+    <h2 class="d-flex justify-center align-center">
+      Bem vindo(a), {{ usuarioLogado }}
+    </h2>
+    <br />
+    <div class="d-flex justify-space-betwenn">
+      <v-card variant="outlined" class="d-flex justify-center align-center ma-8 pa-8" style="width: 50%">
+        <v-card-title>
+          {{ alunosCadastrados }}  Alunos
+          Cadastrados
+          <v-icon icon="mdi-weight-lifter" color="rgb(223, 70, 97)" size="large"></v-icon> 
+        </v-card-title>
+        <v-card-actions>
+          <router-link to="/gerenciamento/aluno">
+            <v-btn variant="elevated" color="#DBD5B5"> Adicionar</v-btn>
+          </router-link>
+        </v-card-actions>
+      </v-card>
+      <v-card variant="outlined" class="d-flex justify-center align-center ma-8 pa-8" style="width: 50%">
+        <v-card-title>
+          {{ exercicios }}
+          Exercícios
+          <v-icon color="rgb(223, 70, 97)" icon="mdi-dumbbell" size="large"></v-icon> 
+        </v-card-title>
+        <v-card-actions>
+          <router-link to="/gerenciamento/exercicios">
+            <v-btn variant="elevated" color="#DBD5B5">Adicionar</v-btn>
+          </router-link>
+        </v-card-actions>
+      </v-card>
+    </div>
+  </div>
 </template>
 
 <script>
-import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue";
 import axios from "axios";
 export default {
   data() {
@@ -54,12 +60,12 @@ export default {
     fetchData() {
       axios({
         url: "http://localhost:3000/dashboard",
-        method: "GET"
+        method: "GET",
       })
         .then((response) => {
           this.alunosCadastrados = response.data.amount_students;
           this.exercicios = response.data.amount_exercises;
-          this.nomeUsuario = localStorage.getItem("nomeUsuario")
+          this.nomeUsuario = localStorage.getItem("nomeUsuario");
         })
         .catch((error) => {
           console.log(error);
