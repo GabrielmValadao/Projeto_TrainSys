@@ -6,7 +6,7 @@
   <div class="d-flex justify-center align-center min-vh-100">
 
     <v-form ref="form" @submit.prevent="handleSubmit" class="ma-10 pa-5">
-      <h3>Faça seu login no nosso app</h3>
+      <h2>Faça seu login no nosso app</h2>
       <br>
       <v-text-field
       
