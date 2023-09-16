@@ -7,6 +7,7 @@
       <h2>Crie sua conta</h2>
       <br />
       <v-text-field
+      style="width: 300px"
         label="Nome"
         type="text"
         variant="underlined"
