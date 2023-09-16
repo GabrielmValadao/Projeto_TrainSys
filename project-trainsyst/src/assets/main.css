@@ -1,18 +1,13 @@
-@import './base.css';
-
-
-#app {
-  max-width: 1280px;
+* {
+  padding: 0;
   margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
+  box-sizing: border-box;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+.v-application__wrap { 
+  min-height: 30vh !important;
 }
 
+.v-list-item__content {
+  height: 50px !important;
+}

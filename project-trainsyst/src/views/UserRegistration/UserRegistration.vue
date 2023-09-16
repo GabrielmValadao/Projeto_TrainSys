@@ -1,58 +1,66 @@
 <template>
   <v-app>
-    <Header></Header>
+    <Header class="pa-1"></Header>
   </v-app>
-  <h1>Crie sua conta</h1>
-  <v-form ref="form" @submit.prevent="handleSubmit">
-    <v-text-field
-      label="Nome"
-      type="text"
-      variant="underlined"
-      v-model="name"
-      :error-messages="this.errors.name"
-    />
+  <div class="d-flex justify-center align-center min-vh-150"> 
+    <v-form ref="form" @submit.prevent="handleSubmit" class="ma-3 pa-3">
+      <h2>Crie sua conta</h2>
+      <br />
+      <v-text-field
+      style="width: 300px"
+        label="Nome"
+        type="text"
+        variant="underlined"
+        v-model="name"
+        :error-messages="this.errors.name"
+      />
 
-    <v-text-field
-      label="E-mail"
-      type="email"
-      variant="underlined"
-      v-model="email"
-      :error-messages= "this.errors.email"
-    />
+      <v-text-field
+        label="E-mail"
+        type="email"
+        variant="underlined"
+        v-model="email"
+        :error-messages="this.errors.email"
+      />
 
-    <v-text-field
-      label="Senha"
-      type="password"
-      variant="underlined"
-      v-model="password"
-      :error-messages= "this.errors.password"
-    />
+      <v-text-field
+        label="Senha"
+        type="password"
+        variant="underlined"
+        v-model="password"
+        :error-messages="this.errors.password"
+      />
 
-    <v-text-field
-      label="Confirme sua senha"
-      type="password"
-      variant="underlined"
-      v-model="verify_password"
-      :error-messages= "this.errors.verify_password"
-    />
+      <v-text-field
+        label="Confirme sua senha"
+        type="password"
+        variant="underlined"
+        v-model="verify_password"
+        :error-messages="this.errors.verify_password"
+      />
 
-    <v-select
-      label="Selecione o seu plano"
-      :items="type_plan"
-      v-model="select_plan"
-      variant="underlined"
-      :error-messages= "this.errors.select_plan"
-    />
+      <v-select
+        label="Selecione o seu plano"
+        :items="type_plan"
+        v-model="select_plan"
+        variant="underlined"
+        :error-messages="this.errors.select_plan"
+      />
 
-    <v-btn type="submit">Cadastrar</v-btn>
-    <router-link to="/">
-      <v-btn>Voltar</v-btn>
-    </router-link>
-  </v-form>
+      <br />
+
+      <div class="d-flex justify-start align-start">
+        <v-btn type="submit" class="mr-4" color="#DBD5B5">Cadastrar</v-btn>
+        <router-link to="/">
+          <v-btn color="#DBD5B5">Voltar</v-btn>
+        </router-link>
+      </div>
+    </v-form>
+  </div>
 </template>
 
 <script>
-import Header from "../../assets/components/headerLoginCadastro/headerLoginCadastro.vue"
+import Header from "../../assets/components/headerLoginCadastro/headerLoginCadastro.vue";
 import * as yup from "yup";
 import axios from "axios";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
@@ -105,7 +113,7 @@ export default {
             email: this.email,
             password: this.password,
             verify_password: this.verify_password,
-            select_plan: this.select_plan 
+            select_plan: this.select_plan,
           },
           { abortEarly: false }
         );
@@ -144,6 +152,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
