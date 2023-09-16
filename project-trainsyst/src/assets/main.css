@@ -1,5 +1,9 @@
 * {
-  margin: 0;
   padding: 0;
+  margin: 0 auto;
   box-sizing: border-box;
+}
+
+.v-application__wrap { 
+  min-height: 30vh !important;
 }

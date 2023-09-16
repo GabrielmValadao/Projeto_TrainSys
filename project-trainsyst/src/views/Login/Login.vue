@@ -2,34 +2,48 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h1>Login</h1>
-  <v-form ref="form" @submit.prevent="handleSubmit">
-    <v-text-field
+
+  <div class="d-flex justify-center align-center min-vh-100">
+
+    <v-form ref="form" @submit.prevent="handleSubmit" class="ma-10 pa-5">
+      <h3>Faça seu login no nosso app</h3>
+      <br>
+      <v-text-field
+      
       label="E-mail"
       type="email"
       variant="underlined"
       v-model="email"
       :error-messages="this.errors.email"
-    />
-
-    <v-text-field
+      />
+      
+      <v-text-field
+      
       label="Senha"
       type="password"
       variant="underlined"
       v-model="password"
       :error-messages="this.errors.password"
-    />
-    <v-btn type="submit">Entrar</v-btn>
-
-    <p>
-      Ainda não possui conta?
-      <router-link to="/cadastro/usuario">Cadastre-se</router-link>
-    </p>
+      />
+    <br />
+    
+      <div class="d-flex justify-start align-start">
+        <v-btn color="#DBD5B5" type="submit" class="mr-4">Entrar</v-btn>
+        <router-link to="/cadastro/usuario">
+        <v-btn color="#DBD5B5">
+          Ainda não possui conta?
+          <router-link to="/cadastro/usuario" style="text-decoration:none">Cadastre-se</router-link>
+        </v-btn>
+      </router-link>
+      </div>
+      
+    
   </v-form>
+</div>
 </template>
 
 <script>
-import Header from "../../assets/components/headerLoginCadastro/headerLoginCadastro.vue"
+import Header from "../../assets/components/headerLoginCadastro/headerLoginCadastro.vue";
 import * as yup from "yup";
 import axios from "axios";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
@@ -83,11 +97,11 @@ export default {
 
           .catch((error) => {
             console.log(error);
-            //não tem message na api 
-            if(error.response?.data?.message) {
-                alert(error.response.data.message)
+            //não tem message na api
+            if (error.response?.data?.message) {
+              alert(error.response.data.message);
             } else {
-                alert('Houve um erro ao efetuar o login')
+              alert("Houve um erro ao efetuar o login");
             }
           });
       } catch (error) {

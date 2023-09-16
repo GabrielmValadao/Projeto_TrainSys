@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+ 
     <v-app-bar height="150" app color="rgb(67, 21, 29)">
       <v-img
         src="../../../../src/public/logo trainsys.png"
@@ -39,7 +39,7 @@
         </v-toolbar-title>
       </div>
     </v-app-bar>
-  </v-container>
+  
 </template>
 
 <script>
