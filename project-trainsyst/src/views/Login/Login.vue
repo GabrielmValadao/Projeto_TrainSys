@@ -4,42 +4,41 @@
   </v-app>
 
   <div class="d-flex justify-center align-center min-vh-100">
-
     <v-form ref="form" @submit.prevent="handleSubmit" class="ma-10 pa-5">
       <h2>Faça seu login no nosso app</h2>
-      <br>
+      <br />
       <v-text-field
-      
-      label="E-mail"
-      type="email"
-      variant="underlined"
-      v-model="email"
-      :error-messages="this.errors.email"
+        label="E-mail"
+        type="email"
+        variant="underlined"
+        v-model="email"
+        :error-messages="this.errors.email"
       />
-      
+
       <v-text-field
-      
-      label="Senha"
-      type="password"
-      variant="underlined"
-      v-model="password"
-      :error-messages="this.errors.password"
+        label="Senha"
+        type="password"
+        variant="underlined"
+        v-model="password"
+        :error-messages="this.errors.password"
       />
-    <br />
-    
+      <br />
+
       <div class="d-flex justify-start align-start">
         <v-btn color="#DBD5B5" type="submit" class="mr-4">Entrar</v-btn>
         <router-link to="/cadastro/usuario">
-        <v-btn color="#DBD5B5">
-          Ainda não possui conta?
-          <router-link to="/cadastro/usuario" style="text-decoration:none">Cadastre-se</router-link>
-        </v-btn>
-      </router-link>
+          <v-btn color="#DBD5B5">
+            <router-link to="/cadastro/usuario" style="text-decoration: none"
+              ><span class="font">
+                Cadastre-se
+              </span>
+              </router-link
+            >
+          </v-btn>
+        </router-link>
       </div>
-      
-    
-  </v-form>
-</div>
+    </v-form>
+  </div>
 </template>
 
 <script>
@@ -114,3 +113,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.font {
+  color: black;
+}
+</style>
