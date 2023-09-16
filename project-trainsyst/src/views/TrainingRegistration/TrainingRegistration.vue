@@ -2,9 +2,9 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h1>Cadastro de Treino</h1>
-  <v-container>
-    <v-form ref="form" @submit.prevent="handleSubmit">
+  <h2 class="d-flex justify-center align-center">Treino</h2>
+  <div>
+    <v-form ref="form" @submit.prevent="handleSubmit" class="pa-2 ma-2">
       <v-select
         label="Selecione o exercício"
         v-model="selectedExercise"
@@ -38,12 +38,12 @@
         :error-messages="this.errors.daysOfWeek"
       />
       <v-text-field label="Observações do Treino" v-model="observations" />
+      <v-btn variant="elevated" class="mr-5" color="#DBD5B5" type="submit">Cadastrar Treino</v-btn>
       <router-link to="/Gerenciamento/Aluno"
-        ><v-btn>Cancelar</v-btn></router-link
+        ><v-btn variant="elevated" class="ma-2" color="#DBD5B5">Cancelar</v-btn></router-link
       >
-      <v-btn type="submit">Cadastrar Treino</v-btn>
     </v-form>
-  </v-container>
+  </div>
 </template>
 
 <script>
