@@ -5,8 +5,12 @@
   <div class="d-flex justify-center align-center">
     <h2>
       Alunos
-      
-      <v-icon icon="mdi-weight-lifter" color="rgb(223, 70, 97)" size="large"></v-icon>
+
+      <v-icon
+        icon="mdi-weight-lifter"
+        color="rgb(223, 70, 97)"
+        size="large"
+      ></v-icon>
     </h2>
   </div>
 
@@ -19,7 +23,7 @@
         label="Digite o nome do aluno"
       ></v-text-field>
 
-      <v-btn @click="filteredStudents" class="mr-5 ma-2"  color="#DBD5B5"
+      <v-btn @click="filteredStudents" class="mr-5 ma-2" color="#DBD5B5"
         >Buscar aluno</v-btn
       >
       <router-link to="/cadastro/novo/aluno">
@@ -110,17 +114,18 @@ export default {
 
 <style scoped>
 table {
-      border-collapse: collapse; 
-      width: 100%;
-    }
+  border-collapse: collapse;
+  width: 100%;
+}
 
-    th, td {
-      border: 1px solid black; 
-      padding: 8px; 
-      text-align: left; 
-    }
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
 
-    th {
-      background-color: #DBD5B5; 
-    }
+th {
+  background-color: #dbd5b5;
+}
 </style>
