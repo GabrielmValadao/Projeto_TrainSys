@@ -2,11 +2,11 @@
   <v-app>
     <Header></Header>
   </v-app>
-    <v-container>
+    <div>
       <h2>Treinos - {{ studentName }}</h2>
       <v-divider></v-divider>
       <h3>Hoje</h3>
-      <v-container>
+      <div>
         <v-list>
           <v-list-item v-for="workout in wourkoutDay[daySelected]" :key="workout.id">
             <v-checkbox v-model="workout.checked" @change="checkWorkout(workout)"></v-checkbox>
@@ -19,17 +19,17 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-      </v-container>
+      </div>
       
-      <v-btn @click="displayWorkouts('segunda')">Segunda-feira</v-btn>
-      <v-btn @click="displayWorkouts('terca')">Terça-feira</v-btn>
-      <v-btn @click="displayWorkouts('quarta')">Quarta-feira</v-btn>
-      <v-btn @click="displayWorkouts('quinta')">Quinta-feira</v-btn>
-      <v-btn @click="displayWorkouts('sexta')">Sexta-feira</v-btn>
-      <v-btn @click="displayWorkouts('sabado')">Sábado</v-btn>
-      <v-btn @click="displayWorkouts('domingo')">Domingo</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('segunda')">Segunda-feira</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('terca')">Terça-feira</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('quarta')">Quarta-feira</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('quinta')">Quinta-feira</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('sexta')">Sexta-feira</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('sabado')">Sábado</v-btn>
+      <v-btn variant="elevated" class="ma-2" color="#DBD5B5" @click="displayWorkouts('domingo')">Domingo</v-btn>
       
-      <v-container>
+      <div>
         <div v-if="daySelected">
           <h2>{{ daySelected }}</h2>
           <v-list>
@@ -45,8 +45,8 @@
             </v-list-item>
           </v-list>
         </div>
-      </v-container>
-    </v-container>
+      </div>
+    </div>
   </template>
   
   <script>
