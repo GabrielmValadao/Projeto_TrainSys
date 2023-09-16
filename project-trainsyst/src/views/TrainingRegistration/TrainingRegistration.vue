@@ -6,6 +6,7 @@
   <div>
     <v-form ref="form" @submit.prevent="handleSubmit" class="pa-2 ma-2">
       <v-select
+        variant="underlined"
         label="Selecione o exercício"
         v-model="selectedExercise"
         :items="exercises"
@@ -14,40 +15,52 @@
         :error-messages="this.errors.selectedExercise"
       />
       <v-text-field
+        variant="underlined"
         label="Quantidade de Repetições"
         v-model="repetitions"
         type="number"
         min="1"
       />
       <v-text-field
+        variant="underlined"
         label="Peso (em kg)"
         v-model="weight"
         type="number"
         :error-messages="this.errors.weight"
       />
       <v-text-field
+        variant="underlined"
         label="Tempo de Pausa (em horas : minutos)"
         v-model="breakTime"
         type="time"
         :error-messages="this.errors.breakTime"
       />
       <v-select
+        variant="underlined"
         label="Dia da Semana"
         v-model="selectedDay"
         :items="daysOfWeek"
         :error-messages="this.errors.daysOfWeek"
       />
-      <v-text-field label="Observações do Treino" v-model="observations" />
-      <v-btn variant="elevated" class="mr-5" color="#DBD5B5" type="submit">Cadastrar Treino</v-btn>
+      <v-text-field
+        variant="underlined"
+        label="Observações do Treino"
+        v-model="observations"
+      />
+      <v-btn variant="elevated" class="mr-5" color="#DBD5B5" type="submit"
+        >Cadastrar Treino</v-btn
+      >
       <router-link to="/Gerenciamento/Aluno"
-        ><v-btn variant="elevated" class="ma-2" color="#DBD5B5">Cancelar</v-btn></router-link
+        ><v-btn variant="elevated" class="ma-2" color="#DBD5B5"
+          >Cancelar</v-btn
+        ></router-link
       >
     </v-form>
   </div>
 </template>
 
 <script>
-import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue"
+import Header from "../../assets/components/HeaderPosLogin/HeaderPosLogin.vue";
 import axios from "axios";
 import * as yup from "yup";
 import { captureErrorYup } from "../../../src/utils/captureErrorYup";
@@ -89,56 +102,60 @@ export default {
     handleSubmit() {
       try {
         const schema = yup.object().shape({
-          selectedExercise: yup.string().required("Selecione um dos exercícios"),
+          selectedExercise: yup
+            .string()
+            .required("Selecione um dos exercícios"),
           weight: yup.string().required("A quantidade de peso é obrigatória"),
           breakTime: yup.string().required("O tempo de pausa é obrigatório"),
-          selectedDay: yup.string().required("Informe o dia da semana")
-        })
+          selectedDay: yup.string().required("Informe o dia da semana"),
+        });
 
-        schema.validateSync ({
-          selectedExercise: this.selectedExercise,
-          weight: this.weight,
-          breakTime: this.breakTime,
-          selectedDay: this.selectedDay
-        },
-        { abortEarly: false})
+        schema.validateSync(
+          {
+            selectedExercise: this.selectedExercise,
+            weight: this.weight,
+            breakTime: this.breakTime,
+            selectedDay: this.selectedDay,
+          },
+          { abortEarly: false }
+        );
 
         const cadastroTreinoData = {
-          student_id: this.student_id, 
+          student_id: this.student_id,
           exercise_id: this.selectedExercise,
           repetitions: this.repetitions,
           weight: this.weight,
           break_time: this.breakTime,
           observations: this.observations,
           day: this.selectedDay,
-      };
-      {
-        axios
-        .post("http://localhost:3000/workouts", cadastroTreinoData)
-        .then(() => {
-          this.$refs.form.reset()
-          alert("Treino cadastrado com sucesso!")
-        })
-        .catch((error) => {
-          alert("Erro ao cadastrar exercício")
-          console.log(error)
-        })
-      }
-    } catch (error) {
+        };
+        {
+          axios
+            .post("http://localhost:3000/workouts", cadastroTreinoData)
+            .then(() => {
+              this.$refs.form.reset();
+              alert("Treino cadastrado com sucesso!");
+            })
+            .catch((error) => {
+              alert("Erro ao cadastrar exercício");
+              console.log(error);
+            });
+        }
+      } catch (error) {
         if (error instanceof yup.ValidationError) {
           console.log(error);
           this.errors = captureErrorYup(error);
         }
       }
-      },
+    },
 
-      fetchExercises() {
-        {
-          axios
-            .get("http://localhost:3000/exercises")
-            .then(({ data }) => (this.exercises = data));
-        }
-      },
+    fetchExercises() {
+      {
+        axios
+          .get("http://localhost:3000/exercises")
+          .then(({ data }) => (this.exercises = data));
+      }
+    },
   },
 };
 </script>
