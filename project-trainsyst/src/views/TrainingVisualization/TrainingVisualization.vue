@@ -13,7 +13,7 @@
     </h2>
   </div>
   <v-divider></v-divider>
-  <h3 class="ma-10">Hoje</h3>
+  <h2 class="pa-2 ma-2">Hoje</h2>
 
   <div>
     <v-list>
@@ -25,7 +25,7 @@
         <v-list-item-action>
           <v-checkbox v-model="workout.checked" @change="checkWorkout(workout)">
           </v-checkbox>
-
+          
           <v-list-item-content>
             <v-list-item-title style="height: 45px">
               {{ workout.exercise_description }} |
@@ -33,6 +33,7 @@
               {{ workout.break_time }} minutos de pausa
             </v-list-item-title>
           </v-list-item-content>
+          
         </v-list-item-action>
       </v-list-item>
     </v-list>
@@ -43,6 +44,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('segunda')"
+    :class="{ 'font-color': clickButton['segunda'] }"
     >Segunda-feira</v-btn
   >
   <v-btn
@@ -50,6 +52,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('terca')"
+    :class="{ 'font-color': clickButton['terca'] }"
     >Terça-feira</v-btn
   >
   <v-btn
@@ -57,6 +60,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('quarta')"
+    :class="{ 'font-color': clickButton['quarta'] }"
     >Quarta-feira</v-btn
   >
   <v-btn
@@ -64,6 +68,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('quinta')"
+    :class="{ 'font-color': clickButton['quinta'] }"
     >Quinta-feira</v-btn
   >
   <v-btn
@@ -71,6 +76,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('sexta')"
+    :class="{ 'font-color': clickButton['sexta'] }"
     >Sexta-feira</v-btn
   >
   <v-btn
@@ -78,6 +84,7 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('sabado')"
+    :class="{ 'font-color': clickButton['sabado'] }"
     >Sábado</v-btn
   >
   <v-btn
@@ -85,17 +92,17 @@
     class="ma-2"
     color="#DBD5B5"
     @click="displayWorkouts('domingo')"
+    :class="{ 'font-color': clickButton['domingo'] }"
     >Domingo</v-btn
   >
 
   <div>
-    <div v-if="daySelected">
-      <h2>{{ daySelected }}</h2>
+    <div class="border-lg ma-2" v-if="daySelected">
       <v-list>
         <v-list-item
           v-for="workout in wourkoutDay[daySelected]"
           :key="workout.id"
-        >
+          >
           <v-list-item-content>
             <v-list-item-title>
               {{ workout.exercise_description }} |
@@ -105,6 +112,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+    
     </div>
   </div>
 </template>
@@ -119,6 +127,18 @@ export default {
       studentName: "",
       wourkoutDay: {},
       daySelected: null,
+
+      clickButton: {
+        segunda: false,
+        terca: false,
+        quarta: false,
+        quinta: false,
+        sexta: false,
+        sabado: false,
+        domingo: false,
+      },
+
+      lastClick: null,
     };
   },
 
@@ -159,6 +179,12 @@ export default {
     },
     displayWorkouts(day) {
       this.daySelected = day;
+      this.clickButton[day] = !this.clickButton[day];
+      if (this.lastClick !== null) {
+        this.clickButton[this.lastClick] = false
+      }
+      this.clickButton[day] = true;
+      this.lastClick = day
     },
     checkWorkout(workout) {
       const { id, day } = workout;
@@ -181,3 +207,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.font-color {
+  
+  color: white; 
+}
+</style>
