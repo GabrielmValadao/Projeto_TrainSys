@@ -8,28 +8,31 @@
   
   </h2>
   <hr>
-  <v-form ref="form" @submit.prevent="addExercise" class="pa-5 ma-5">
+  <v-form ref="form" @submit.prevent="addExercise" class="pa-2 ma-2">
     <div class="d-flex justify-row">
     <v-text-field
-    class="ma-6"
+    class="ma-2"
     v-model="newExercise"
     label="Nome do exercício"
     variant="outlined"
     :error-messages="this.errors.newExercise" 
     />
     <v-btn variant="elevated" 
-    class="ma-6"
+    class="ma-2"
     height="60"
     color="#DBD5B5" type="submit">Cadastrar exercício</v-btn>
   </div>
   
-  <div>
+  <div class="card-lista-exercicio">
+    <v-card outlined class="ma-5 pa-5">
     <h3>Lista de exercícios:</h3>
-    <ul>
-      <li v-for="exercise in exercises" :key="exercise.id">
-        {{ exercise.description }}
-      </li>
-    </ul>
+    <br>
+    <ul type="none">
+      <li v-for="exercise in exercises"  :key="exercise.id">
+          {{ exercise.description }}
+        </li>
+      </ul>
+    </v-card>
   </div>
 </v-form>
 </template>
@@ -118,5 +121,16 @@ hr {
   border: none;
   border-top: 1px solid #043c4b;
   padding: 10px; 
+}
+
+.card-lista-exercicio {
+  border: 1px solid #DBD5B5;
+  background-color:  #DBD5B5;
+  border-radius: 5px;
+}
+
+li {
+  padding: 5px;
+  border: 1px solid black;
 }
 </style>
