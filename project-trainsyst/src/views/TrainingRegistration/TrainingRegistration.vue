@@ -2,46 +2,66 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h2 class="d-flex justify-center align-center"> <v-icon color="rgb(223, 70, 97)" icon="mdi-kettlebell" size="large"></v-icon> Treino</h2>
-  <div>
+  <div class="container">
     <v-form ref="form" @submit.prevent="handleSubmit" class="pa-2 ma-2">
-      <v-select
-        variant="underlined"
-        label="Selecione o exercício"
-        v-model="selectedExercise"
-        :items="exercises"
-        item-title="description"
-        item-value="id"
-        :error-messages="this.errors.selectedExercise"
-      />
-      <v-text-field
-        variant="underlined"
-        label="Quantidade de Repetições"
-        v-model="repetitions"
-        type="number"
-        min="1"
-      />
-      <v-text-field
-        variant="underlined"
-        label="Peso (em kg)"
-        v-model="weight"
-        type="number"
-        :error-messages="this.errors.weight"
-      />
-      <v-text-field
-        variant="underlined"
-        label="Tempo de Pausa (em horas : minutos)"
-        v-model="breakTime"
-        type="time"
-        :error-messages="this.errors.breakTime"
-      />
-      <v-select
-        variant="underlined"
-        label="Dia da Semana"
-        v-model="selectedDay"
-        :items="daysOfWeek"
-        :error-messages="this.errors.daysOfWeek"
-      />
+      <h2 class="d-flex justify-center align-center ma-2">
+        <v-icon
+          color="rgb(223, 70, 97)"
+          icon="mdi-kettlebell"
+          size="large"
+        ></v-icon>
+        Treino
+      </h2>
+      
+      <div class="d-flex">
+        <v-select
+          class="mr-5"
+          style="width: 300px"
+          variant="underlined"
+          label="Selecione o exercício"
+          v-model="selectedExercise"
+          :items="exercises"
+          item-title="description"
+          item-value="id"
+          :error-messages="this.errors.selectedExercise"
+        />
+        <v-text-field
+          style="width: 300px"
+          variant="underlined"
+          label="Quantidade de Repetições"
+          v-model="repetitions"
+          type="number"
+          min="1"
+        />
+      </div>
+      <div class="d-flex">
+        <v-text-field
+          class="mr-5"
+          style="width: 300px"
+          variant="underlined"
+          label="Peso (em kg)"
+          v-model="weight"
+          type="number"
+          :error-messages="this.errors.weight"
+        />
+        <v-text-field
+          class="mr-5"
+          style="width: 300px"
+          variant="underlined"
+          label="Tempo de Pausa (em horas : minutos)"
+          v-model="breakTime"
+          type="time"
+          :error-messages="this.errors.breakTime"
+        />
+        <v-select
+          style="width: 300px"
+          variant="underlined"
+          label="Dia da Semana"
+          v-model="selectedDay"
+          :items="daysOfWeek"
+          :error-messages="this.errors.daysOfWeek"
+        />
+      </div>
       <v-text-field
         variant="underlined"
         label="Observações do Treino"
@@ -159,3 +179,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+</style>
