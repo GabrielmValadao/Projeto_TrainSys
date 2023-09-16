@@ -7,3 +7,7 @@
 .v-application__wrap { 
   min-height: 30vh !important;
 }
+
+.v-list-item__content {
+  height: 50px !important;
+}
