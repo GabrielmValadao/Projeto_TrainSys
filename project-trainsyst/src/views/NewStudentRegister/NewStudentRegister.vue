@@ -2,7 +2,7 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h1>Cadastro de novos alunos</h1>
+  <h2>Cadastro de novos alunos</h2>
   <v-form ref="form" @submit.prevent="handleSubmit">
     <v-text-field
       type="text"
