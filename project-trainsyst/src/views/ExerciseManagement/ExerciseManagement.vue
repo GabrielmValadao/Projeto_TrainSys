@@ -2,22 +2,29 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h1>Exercícios</h1>
-
-  <v-form refr="form" @submit.prevent="addExercise">
-    <div>
-    <h2>Novo Exercício:</h2>
+  <h2 class="d-flex justify-center align-center">
+    Cadastro de exercícios
+    <v-icon color="rgb(223, 70, 97)" icon="mdi-dumbbell" size="large"></v-icon> 
+  
+  </h2>
+  <hr>
+  <v-form ref="form" @submit.prevent="addExercise" class="pa-5 ma-5">
+    <div class="d-flex justify-row">
     <v-text-field
+    class="ma-6"
     v-model="newExercise"
     label="Nome do exercício"
-    variant="underlined"
+    variant="outlined"
     :error-messages="this.errors.newExercise" 
     />
-    <v-btn type="submit">Cadastrar exercício</v-btn>
+    <v-btn variant="elevated" 
+    class="ma-6"
+    height="60"
+    color="#DBD5B5" type="submit">Cadastrar exercício</v-btn>
   </div>
   
   <div>
-    <h2>Lista de exercícios:</h2>
+    <h3>Lista de exercícios:</h3>
     <ul>
       <li v-for="exercise in exercises" :key="exercise.id">
         {{ exercise.description }}
@@ -105,3 +112,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+hr {
+  border: none;
+  border-top: 1px solid #043c4b;
+  padding: 10px; 
+}
+</style>
