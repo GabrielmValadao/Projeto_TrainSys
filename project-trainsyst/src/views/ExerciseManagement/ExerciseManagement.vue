@@ -14,18 +14,18 @@
     class="ma-2"
     v-model="newExercise"
     label="Nome do exercício"
-    variant="outlined"
+    variant="underlined"
     :error-messages="this.errors.newExercise" 
     />
     <v-btn variant="elevated" 
     class="ma-2"
-    height="60"
+    
     color="#DBD5B5" type="submit">Cadastrar exercício</v-btn>
   </div>
   
   <div class="card-lista-exercicio">
     <v-card outlined class="ma-5 pa-5">
-    <h3>Lista de exercícios:</h3>
+    <h3>Lista de exercícios</h3>
     <br>
     <ul type="none">
       <li v-for="exercise in exercises"  :key="exercise.id">

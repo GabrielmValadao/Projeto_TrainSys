@@ -124,11 +124,11 @@
           label="Complemento"
           v-model="complement"
         />
-        <v-btn class="mr-5" color="#DBD5B5" type="submit"
+        <v-btn variant="elevated"  class="mr-5" color="#DBD5B5" type="submit"
           >Cadastrar Aluno</v-btn
         >
         <router-link to="/Gerenciamento/Aluno">
-          <v-btn color="#DBD5B5">Voltar</v-btn>
+          <v-btn variant="elevated"  color="#DBD5B5">Voltar</v-btn>
         </router-link>
       </v-form>
     </div>
