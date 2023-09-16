@@ -10,9 +10,9 @@
     <div class="d-flex justify-space-betwenn">
       <v-card variant="outlined" class="d-flex justify-center align-center ma-8 pa-8" style="width: 50%">
         <v-card-title>
-          {{ alunosCadastrados }}  Alunos
-          Cadastrados
-          <v-icon icon="mdi-weight-lifter" color="rgb(223, 70, 97)" size="large"></v-icon> 
+          <v-icon icon="mdi-weight-lifter" size="large"></v-icon> 
+          Alunos Cadastrados: 
+          {{ alunosCadastrados }}  
         </v-card-title>
         <v-card-actions>
           <router-link to="/gerenciamento/aluno">
@@ -22,9 +22,9 @@
       </v-card>
       <v-card variant="outlined" class="d-flex justify-center align-center ma-8 pa-8" style="width: 50%">
         <v-card-title>
+          <v-icon icon="mdi-dumbbell" size="large"></v-icon> 
+          Exercícios Cadastrados:
           {{ exercicios }}
-          Exercícios
-          <v-icon color="rgb(223, 70, 97)" icon="mdi-dumbbell" size="large"></v-icon> 
         </v-card-title>
         <v-card-actions>
           <router-link to="/gerenciamento/exercicios">
