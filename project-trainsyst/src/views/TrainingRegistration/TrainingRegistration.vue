@@ -2,7 +2,7 @@
   <v-app>
     <Header></Header>
   </v-app>
-  <h2 class="d-flex justify-center align-center">Treino</h2>
+  <h2 class="d-flex justify-center align-center"> <v-icon color="rgb(223, 70, 97)" icon="mdi-kettlebell" size="large"></v-icon> Treino</h2>
   <div>
     <v-form ref="form" @submit.prevent="handleSubmit" class="pa-2 ma-2">
       <v-select
