@@ -39,6 +39,9 @@
     </v-list>
   </div>
 
+  <div class="pa-5">
+
+  </div>
   <v-btn
     variant="elevated"
     class="ma-2"
@@ -211,6 +214,6 @@ export default {
 <style scoped>
 .font-color {
   
-  color: white; 
+  color: rgb(223, 70, 97); 
 }
 </style>
