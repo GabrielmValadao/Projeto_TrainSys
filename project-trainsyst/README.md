@@ -1,6 +1,6 @@
-# project-trainsyst 
+# Project TrainSyst 
 
-This template should help get you started developing with Vue 3 in Vite.
+TrainSyst é uma aplicação Vue.js 3 estilizada com Vuetify e Vuedatepicker, utilizando também as bibliotecas Axios, Yup e Vue Router. Este projeto foi criado para ajudar instrutores de academia a aprimorar a administração de treinamentos e seus alunos.
 
 ## Recommended IDE Setup
 
