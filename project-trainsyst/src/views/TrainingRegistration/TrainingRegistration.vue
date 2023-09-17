@@ -89,13 +89,13 @@ export default {
   data() {
     return {
       student_id: this.$route.params.id,
-      exercises: [], // Para armazenar os exercícios obtidos da API
+      exercises: [], 
       selectedExercise: null,
       repetitions: 1,
       weight: null,
       breakTime: null,
       observations: "",
-      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), // Dia atual como valor padrão
+      selectedDay: new Date().toLocaleDateString("pt-BR", { weekday: "long" }), 
       daysOfWeek: [
         { title: "Segunda-feira", value: "segunda" },
         { title: "Terça-feira", value: "terca" },

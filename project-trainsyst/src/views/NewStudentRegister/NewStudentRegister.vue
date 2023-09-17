@@ -165,15 +165,15 @@ export default {
 
   methods: {
     consultarCep() {
-      // Nova variável "cep" somente com dígitos.
+      
       var cep = this.cep.replace(/\D/g, "");
 
-      // Verifica se campo CEP possui valor informado.
+      
       if (cep !== "") {
         var validacep = /^[0-9]{8}$/;
 
         if (validacep.test(cep)) {
-          // Faz a consulta na API do ViaCEP.
+          
           fetch(`https://viacep.com.br/ws/${cep}/json/`)
             .then((response) => response.json())
             .then((data) => {
@@ -228,8 +228,6 @@ export default {
           { abortEarly: false }
         );
 
-        //cadastro de novo aluno
-
         axios({
           url: "http://localhost:3000/students",
           method: "POST",
@@ -269,7 +267,6 @@ export default {
 <style scoped>
 .container {
   margin: 0 auto;
-
   width: 1000px;
   border: 5px solid #dbd5b5;
   border-radius: 10px;

@@ -2,12 +2,12 @@
   <v-app>
     <Header class="pa-1"></Header>
   </v-app>
-  <div class="d-flex justify-center align-center min-vh-150"> 
+  <div class="d-flex justify-center align-center min-vh-150">
     <v-form ref="form" @submit.prevent="handleSubmit" class="ma-3 pa-3">
       <h2>Crie sua conta</h2>
       <br />
       <v-text-field
-      style="width: 300px"
+        style="width: 300px"
         label="Nome"
         type="text"
         variant="underlined"
@@ -124,8 +124,6 @@ export default {
           password: this.password,
           type_plan: this.select_plan,
         };
-
-        //cadastro do usuario
 
         axios
           .post(`http://localhost:3000/users`, novoUsuario)
